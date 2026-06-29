@@ -77,52 +77,41 @@ WHERE sale_date = '2022-11-05';
 
 2. **query to retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 4 in the month of Nov-2022**:
 ```sql
-SELECT 
-  *
+SELECT *
 FROM retail_sales
-WHERE 
-    category = 'Clothing'
-    AND 
-    TO_CHAR(sale_date, 'YYYY-MM') = '2022-11'
-    AND
-    quantity >= 4
+WHERE category = 'Clothing'
+AND 
+TO_CHAR(sale_date, 'YYYY-MM') = '2022-11'
+AND
+quantity >= 4
 ```
 
 3. **query to calculate the total sales (total_sale) for each category.**:
 ```sql
-SELECT 
-    category,
-    SUM(total_sale) as net_sale,
-    COUNT(*) as total_orders
+SELECT category, SUM(total_sale) as net_sale, COUNT(*) as total_orders
 FROM retail_sales
 GROUP BY 1
 ```
 
 4. **query to find the average age of customers who purchased items from the 'Beauty' category.**:
 ```sql
-SELECT
-    ROUND(AVG(age), 2) as avg_age
+SELECT ROUND(AVG(age), 2) as avg_age
 FROM retail_sales
 WHERE category = 'Beauty'
 ```
 
 5. **query to find all transactions where the total_sale is greater than 1000.**:
 ```sql
-SELECT * FROM retail_sales
+SELECT *
+FROM retail_sales
 WHERE total_sale > 1000
 ```
 
 6. **query to find the total number of transactions (transaction_id) made by each gender in each category.**:
 ```sql
-SELECT 
-    category,
-    gender,
-    COUNT(*) as total_trans
+SELECT category, gender, COUNT(*) as total_transanctionss
 FROM retail_sales
-GROUP 
-    BY 
-    category,
-    gender
+GROUP BY category, gender
 ORDER BY 1
 ```
 
@@ -162,7 +151,7 @@ SELECT
     category,    
     COUNT(DISTINCT customer_id) as cnt_unique_cs
 FROM retail_sales
-GROUP BY category
+GROUP BY 1
 ```
 
 10. **query to create each shift and number of orders (Example Morning <12, Afternoon Between 12 & 17, Evening >17)**:
